@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bnf6i0tvi3fkn"]
 
-[ext_resource type="Script" path="res://addons/Neat/demo/level/level_1.gd" id="1_mv3mv"]
+[ext_resource type="Script" uid="uid://chcfmv3hd7gi6" path="res://addons/Neat/demo/level/level_1.gd" id="1_mv3mv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ie4hr"]
 size = Vector2(31.5, 82)

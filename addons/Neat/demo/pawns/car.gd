@@ -116,5 +116,5 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 
 func _on_timer_timeout() -> void:
-	fitness += 0.1
+	fitness += linear_velocity.length()
 	$Timer.start(timer_time)
