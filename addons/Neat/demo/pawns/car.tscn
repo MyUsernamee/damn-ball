@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://d1ipngcxcqndd"]
 
-[ext_resource type="Texture2D" uid="uid://frlidm3rsngk" path="res://icon.svg" id="1_l8eax"]
-[ext_resource type="Script" path="res://addons/Neat/demo/pawns/car.gd" id="1_s7ot2"]
+[ext_resource type="Texture2D" uid="uid://cog1y6j8j5kax" path="res://icon.svg" id="1_l8eax"]
+[ext_resource type="Script" uid="uid://c3axm1r1unxix" path="res://addons/Neat/demo/pawns/car.gd" id="1_s7ot2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r03uj"]
 size = Vector2(125, 130)

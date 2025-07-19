@@ -70,23 +70,21 @@ func sense() -> Array:
 func act(actions: Array) -> void:
 	var torque = lerp(0, steering_torque, _velocity.length() / max_forward_velocity)
 	# accelerate
-	if actions[0] > 0.3:
-		_velocity += -transform.y * acceleration
+	_velocity += -transform.y * acceleration  * actions[0]
 	# break & reverse
-	elif actions[1] > 0.3:
-		_velocity -= -transform.y * acceleration
+	_velocity -= -transform.y * acceleration * actions[1]
 	# steer right
-	if actions[2] > 0.1:
-		_angular_velocity = remap(actions[2], 0.2, 1, 0, 1) * torque * sign(speed)
+	_angular_velocity = remap(actions[2], 0., 1, 0, 1) * torque * sign(speed)
 	# steer left
-	elif actions[3] > 0.1:
-		_angular_velocity = remap(actions[3], 0.2, 1, 0, 1) * -torque * sign(speed)
+	_angular_velocity = remap(actions[3], 0., 1, 0, 1) * -torque * sign(speed)
 	# Prevent exceeding max velocity
 	var max_speed = (Vector2(0, -1) * max_forward_velocity).rotated(rotation)
 	var x = clamp(_velocity.x, -abs(max_speed.x), abs(max_speed.x))
 	var y = clamp(_velocity.y, -abs(max_speed.y), abs(max_speed.y))
 	_velocity = Vector2(x, y)
 	
+	if _velocity.dot(-transform.y) > 0:
+		die()
 	
 	if _drift_factor == wheel_grip_sticky and get_right_velocity().length() > drift_extremum:
 		_drift_factor = wheel_grip_slippery
@@ -112,9 +110,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("border"):
 		die()
 	elif area.is_in_group("checkpoint"):
-		fitness += 10
+		fitness += 1000
 
 
 func _on_timer_timeout() -> void:
-	fitness += linear_velocity.length()
-	$Timer.start(timer_time)
+	fitness += linear_velocity.length() * 0.1

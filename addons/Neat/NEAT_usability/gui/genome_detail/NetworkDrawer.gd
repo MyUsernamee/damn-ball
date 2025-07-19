@@ -4,6 +4,8 @@ extends Control
 """
 
 
+func update():
+	pass
 # the font used
 var roboto = load("res://NEAT_usability/fonts/dynamics/roboto-black.tres")
 
