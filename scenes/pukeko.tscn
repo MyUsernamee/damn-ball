@@ -13,12 +13,13 @@ colors = PackedColorArray(0, 0, 0, 0.403922, 0, 0, 0, 0)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_64bt1"]
 gradient = SubResource("Gradient_qyu0u")
 width = 256
-height = 128
+height = 256
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 
 [node name="Pukeko" type="CharacterBody3D"]
+collision_layer = 2
 script = ExtResource("1_qyu0u")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -30,8 +31,7 @@ billboard = 1
 texture = ExtResource("1_mmsgp")
 
 [node name="Sprite3D2" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.504034, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.00586835, -0.378157, 0.180466)
 pixel_size = 0.0025
-billboard = 1
 texture = SubResource("GradientTexture2D_64bt1")
 script = ExtResource("3_64bt1")

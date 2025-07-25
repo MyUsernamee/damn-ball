@@ -17,11 +17,15 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GameState="*res://scripts/game_state.gd"
 Innovations="*res://addons/Neat/NEAT_code/innovations.gd"
 Params="*res://addons/Neat/NEAT_code/params.gd"
 Utils="*res://addons/Neat/NEAT_code/utils.gd"
+GameState="*res://scripts/game_state.gd"
 
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/Neat/plugin.cfg")
+
+[physics]
+
+3d/physics_engine="Jolt Physics"

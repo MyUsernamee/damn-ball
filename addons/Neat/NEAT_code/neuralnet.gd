@@ -95,7 +95,11 @@ func update(input_values: Array) -> Array:
 			for connection in neuron.input_connections:
 				var input_neuron = connection[0]; var weight = connection[1]
 				weighted_sum += input_neuron.output * weight
-			neuron.output = activation_func.call(weighted_sum, neuron.activation_curve)
+
+			if not neuron in outputs:
+				neuron.output = activation_func.call(weighted_sum, neuron.activation_curve)
+			else:
+				neuron.output = weighted_sum
 	# copy output of output neurons into output array
 	output.clear()
 	for out_neuron in outputs:
@@ -170,6 +174,9 @@ static func calculate_depth(sorted_hiddens: Array) -> int:
 	return network_depth
 
 # --------------- Activation Functions ---------------
+
+static func relu_activate(weighted_sum: float, activation_modifier: float) -> float:
+	return max(0, weighted_sum * activation_modifier)
 
 static func tanh_activate(weighted_sum: float, activation_modifier: float) -> float:
 	"""Standard tanh activation_modifier would be 2. Outputs range -1 to 1.

@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://drhatvdl8yirk"]
 
+[ext_resource type="Script" uid="uid://bbm0lkfy7j8eu" path="res://scripts/camera.gd" id="1_lbhrr"]
 [ext_resource type="Material" uid="uid://dgjiw8udooecr" path="res://addons/prototype_mini_bundle/M_prototype_dark.tres" id="1_lnu2h"]
 [ext_resource type="Material" uid="uid://7to3kb1tisdd" path="res://addons/prototype_mini_bundle/M_prototype_orange.tres" id="2_yqjtg"]
-[ext_resource type="PackedScene" uid="uid://h78jym5x7lln" path="res://scenes/pukeko.tscn" id="3_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://tkgns862x2y" path="res://scenes/ball.tscn" id="4_lbhrr"]
 
 [sub_resource type="Environment" id="Environment_lnu2h"]
@@ -25,6 +25,12 @@ plane = Plane(1, 0, 0, 0)
 
 [node name="Game" type="Node3D"]
 
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 12.111, 11.722)
+projection = 1
+size = 10.0
+script = ExtResource("1_lbhrr")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.958354, 0.14425, 0.246475, -0.283953, 0.389221, 0.876286, 0.0304717, -0.90978, 0.413971, 7, 3.11102, 3.72229)
 
@@ -41,6 +47,7 @@ material = SubResource("StandardMaterial3D_8cj0n")
 [node name="Hoops" type="CSGCombiner3D" parent="."]
 material_override = ExtResource("2_yqjtg")
 use_collision = true
+collision_mask = 3
 
 [node name="RightHoop" type="CSGTorus3D" parent="Hoops"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 3.05, 0)
@@ -60,18 +67,12 @@ outer_radius = 0.57
 sides = 16
 ring_sides = 8
 
-[node name="Pukeko" parent="." instance=ExtResource("3_lnu2h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.539, 0)
-
-[node name="Camera3D" type="Camera3D" parent="Pukeko"]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 10.572, 11.722)
-projection = 1
-size = 10.0
-
 [node name="Ball" parent="." instance=ExtResource("4_lbhrr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.82355, 1.60959)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6059, 0)
+collision_mask = 3
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.6195)
@@ -88,3 +89,6 @@ shape = SubResource("WorldBoundaryShape3D_p57ef")
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.28, 0.1, 0)
 shape = SubResource("WorldBoundaryShape3D_u5sy4")
+
+[node name="Start" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
